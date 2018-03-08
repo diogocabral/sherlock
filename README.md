@@ -1,4 +1,4 @@
-sherlock improved
+improved sherlock
 ========
 
 A modification of sherlock plagiarism detector.
