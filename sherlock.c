@@ -18,25 +18,25 @@
 #include <dirent.h>
 
 char *          Progname = "sherlock";
-int             Ntoken = 3;
-int		        Zerobits = 4;
+int		Ntoken = 3;
+int		Zerobits = 4;
 unsigned long	zeromask;
-int		        ntoken = 0;
-char **		    token;
-FILE *		    Outfile;
-int		        Thresh = 0;
-int    		    Recursive = 0;
+int		ntoken = 0;
+char **		token;
+FILE *		Outfile;
+int		Thresh = 0;
+int    		Recursive = 0;
 
-char * 		    fileextension = "c";
-int 		    nfiles = 0;
-char ** 	    filePath;
+char * 		fileextension = "c";
+int 		nfiles = 0;
+char ** 	filePath;
 
 /* characters to ignore at start and end of each word */
-char *		    Ignore = " \t\n";
+char *		Ignore = " \t\n";
 
 /* characters to treat as word-separators or words on their own */
-char *		    Punct_full = ",.<>/?;:'\"`~[]{}\\|!@#$%^&*()-+_=";
-char *		    Punct = "";
+char *		Punct_full = ",.<>/?;:'\"`~[]{}\\|!@#$%^&*()-+_=";
+char *		Punct = "";
 
 typedef struct Sig Sig;
 struct Sig
@@ -97,28 +97,28 @@ void listFiles(const char *name)
 
 	while ((entry = readdir(dir)) != NULL) 
 	{
-        if (entry->d_type == DT_DIR) 
+        	if (entry->d_type == DT_DIR) 
 		{
 			if (Recursive == 1) 
 			{
-                int len;
-                char * path;
+        	        	int len;
+                		char * path;
                 
-           	    if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
-	                continue;
+           	    		if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
+	                		continue;
 
-                len = strlen(name) + 2 + strlen(entry->d_name);                        	
-                path = malloc(len * sizeof(char));
+                		len = strlen(name) + 2 + strlen(entry->d_name);                        	
+                		path = malloc(len * sizeof(char));
                 
-                sprintf(path, "%s/%s", name, entry->d_name);
+                		sprintf(path, "%s/%s", name, entry->d_name);
            		
 				listFiles(path);
 				
-                free(path);
+                		free(path);
 			}
-        }
-        else if (entry->d_type == DT_REG) 
-        {
+        	}
+        	else if (entry->d_type == DT_REG) 
+        	{
 			if (endsWith(entry->d_name, fileextension) != 0) 
 				continue;
 
@@ -132,9 +132,9 @@ void listFiles(const char *name)
 				filePath = realloc(filePath, (nfiles + 1000) * sizeof(char*));
 		}
 
-    }
+   	}
 
-    closedir(dir);
+	closedir(dir);
 }
 
 int main(int argc, char *argv[])
