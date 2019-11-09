@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -ansi -pedantic -O2 -g
+CFLAGS = -Wall -ansi -pedantic -O2 -g -D_DEFAULT_SOURCE
 SOURCE = *.c *.h *akefile*
 PROGRAM = sherlock
 
