@@ -34,24 +34,29 @@ If using Unix or Linux, just type "make". If using Windows, consult your compile
 
 ## How do I use it?
 
-Sherlock is a command-line program. That is, you run it from an **xterm** or **DOS** window. It isn't graphical, and has no graphical user interface. Sorry. Use it like this:
+Sherlock is a command-line program. That is, you run it from an **xterm**, **terminal** or **DOS** window. It isn't graphical, and has no graphical user interface. Sorry. Use it like this:
 
-<pre>   sherlock *.txt
+<pre>   ./sherlock -e .txt *
 </pre>
 
-That will compare all the text files in the current directory and produce a listing of the most similar files, together with a percentage similarity index.
+That will compare all the text files in the sub directories and produce a listing of the most similar files, together with a percentage similarity index.
 
 To compare source files, you might use it like this:
 
-<pre>   sherlock *.java
+<pre>   ./sherlock -e .java *
 </pre>
+or for python
+<pre>   ./sherlock -e .py *
+</pre>
+
+Sherlock can analize any text type file
 
 Actually, it's a good idea to redirect the output into a file, so you can examine it in detail. Otherwise it'll just flash past very quickly. To redirect the output into a file, you use the > symbol:
 
-<pre>   sherlock *.java > results.txt
+<pre>   ./sherlock -e .java * > results.csv
 </pre>
 
-This creates a file called "results.txt" which contains the results.
+This creates a file called "results.csv" which contains the results and can open with **Excel**, **LibreOffice** or similar .
 
 ## What options does the program support?
 
@@ -62,12 +67,6 @@ There are several command-line options to Sherlock:
 *   <tt>-n _number_of_words_</tt> This controls how many words are used to form one digital signature. This also contributes to the granularity of the comparison. A higher number is slower while a lower number is less exact. The default is 3 words, which works fine in most cases.
 *   <tt>-o _outfile_</tt> If using Windows it may be difficult to specify an output file on the command line. Use this option to specify the output file.
 
-Examples:
-
-<pre>   sherlock -t 80% -z 3 -n 2 -o results.txt *.java
-   sherlock -t 50% -o results.txt *.txt
-   sherlock -t 0% *.java   # reports all similarity indexes
-</pre>
 
 ## What does the output look like?
 
@@ -77,16 +76,16 @@ The output lists the similarity indexes between each pair of files. This index i
 
 The output of the program might look like this:
 
-<pre>   README and index.html: 5%
-   README and makefile: 1%
-   README and sherlock: 0%
-   README and sherlock.c: 2%
-   index.html and makefile: 8%
-   index.html and sherlock: 0%
-   index.html and sherlock.c: 10%
-   makefile and sherlock: 0%
-   makefile and sherlock.c: 6%
-   sherlock and sherlock.c: 0%
+<pre>   README;index.html;5%
+   README;makefile;1%
+   README;sherlock;0%
+   README;sherlock.c;2%
+   index.html;makefile;8%
+   index.html;sherlock;0%
+   index.html;sherlock.c;10%
+   makefile;sherlock;0%
+   makefile;sherlock.c;6%
+   sherlock;sherlock.c;0%
 </pre>
 
 (The threshold is normally 20%, so the above output would not ordinarily be shown. The example used a threshold lowered to 0% in order to see all similarities. The numbers are fake, however, and just for illustrational purposes.)
